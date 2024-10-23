@@ -24,11 +24,11 @@
 на экран число, которое меньше одного и больше двух других чисел (то есть,
 это число в отсортированной последовательности стояло бы третьим).
 
-- Находим 2-ое по величине число из чисел A, B, C, D и выводим его. Для этого создаём четыре сложных условия, из которых только единственное верное.
+- Находим 3-ее число из списка чисел a, b, c, d и выводим его. Для этого создаём четыре сложных условия, из которых только единственное верное.
 
 ### 2. Входные и выходные данные
 #### Данные на вход
-Все числа должны быть различные и удовлетворять условию A<B<C<D
+Все числа должны быть различные и целые
 |             | Тип         | min значение    | max значение   |
 |-------------|-------------|-----------------|----------------|
 | a (Число 1) | Целое число | -10<sup>9</sup> | 10<sup>9</sup> |
@@ -75,29 +75,22 @@ graph TD;
 ```
 ### 5. Программа
 
-
-
+```java
 import java.util.Scanner;
 
-public class ThirdNumber {
-
+public class Main {
     public static void main(String[] args) {
+        // Создаем сканер для считывания входных данных
         Scanner scanner = new Scanner(System.in);
 
-        System.out.print("Введите первое число: ");
-        int num1 = scanner.nextInt();
-
-        System.out.print("Введите второе число: ");
-        int num2 = scanner.nextInt();
-
-        System.out.print("Введите третье число: ");
-        int num3 = scanner.nextInt();
-
-        System.out.print("Введите четвертое число: ");
-        int num4 = scanner.nextInt();
+        // Вводим данные
+        int a = scanner.nextInt();
+        int b = scanner.nextInt();
+        int c = scanner.nextInt();
+        int d = scanner.nextInt();
 
         // Находим "третье" число без сортировки
-        int third = findThird(num1, num2, num3, num4);
+        int third = findThird(a, b, c, d);
 
         System.out.println("Третье число: " + third);
     }
@@ -118,44 +111,14 @@ public class ThirdNumber {
 }
 
 
-
-
-
-```java
-import java.util.Scanner;
-
-public class Main {
-    public static void main(String[] args) {
-        // Создаем сканер для считывания входных данных
-        Scanner scanner = new Scanner(System.in);
-
-        // Вводим данные
-        int X = scanner.nextInt();
-        int A = scanner.nextInt();
-        int B = scanner.nextInt();
-        int C = scanner.nextInt();
-        int D = scanner.nextInt();
-
-        // Логика проверки положения точки X
-        if (X < A) {
-            System.out.println(1); // Участок 1
-        } else if (X < B && X > A) {
-            System.out.println(2); // Участок 2
-        } else if (X < C && X > B) {
-            System.out.println(3); // Участок 3
-        } else if (X < D && X > C) {
-            System.out.println(4); // Участок 4
-        } else if (X > D) {
-            System.out.println(5); // Участок 5
-        } else {
-            System.out.println("Введённые числа не соответсвуют условиям задачи, они должны быть различны");
-        }
-
-        // Закрываем сканер
-        scanner.close();
-    }
-}
-
-
 ```
+
+if (a==b || a==c || a==d || b==c || b==d || c==d ){
+            System.out.println("Нарушено условие!");
+
+
+( a==b || a==c || a==d || b==c || b==d || c==d ){
+        } else if            
+
+
 ### 6. Анализ правильности решения
