@@ -24,7 +24,9 @@
 на экран число, которое меньше одного и больше двух других чисел (то есть,
 это число в отсортированной последовательности стояло бы третьим).
 
-- Находим 3-ее число из списка чисел a, b, c, d и выводим его. Для этого создаём четыре сложных условия, из которых только единственное верное.
+- Находим 3-ее число из списка чисел a, b, c, d и выводим его.
+- Для этого проверяем заданное условие и создаём четыре сложных условия,
+  из которых только единственное верное выводится при отсутствии ошибок ввода. 
 
 ### 2. Входные и выходные данные
 #### Данные на вход
@@ -47,6 +49,7 @@
 #### Алгоритм выполнения программы:
 1. Ввести четыре целых чисел: a ,b, c, d.
 2. Проверить условия:
+- Если заданное условие нарушено, то вывести "Нарушено условие, неверный ввод!" (участок 5).
 - Если a подходит под заданное условие, то вывести a (участок 1).
 -	Если b подходит под заданное условие, то вывести b (участок 2).
 -	Если c подходит под заданное условие, то вывести c (участок 3).
@@ -57,10 +60,9 @@
 ```mermaid
 graph TD;
  A([Начало]) --> X[/Ввод: a, b, c, d/];
-    X --> Y{ (a=b) || (a=c) || (a=d) || (b=c) || (b=d) || (c=d)};
+    X --> Y{ a=b or a=c or a=d or b=c or b=d or c=d };
     Y -- Да --> Z["Нарушено условие, неверный ввод!"];
     Y -- Нет -->B;
-
     B --> C{d>a>b&&c or b>a>c&&d or c>a>b&&d};
     C -- Да --> D[Вывод: a];
     C -- Нет --> E{d>b>a&&c or a>b>c&&d or c>b>a&&d};
@@ -73,56 +75,44 @@ graph TD;
     F --> K;
     H --> K;
     J --> K;
-    Y --> K;
+    Z --> K;
     
 
 ```
 ### 5. Программа
 
 ```java
+import java.io.PrintStream;
 import java.util.Scanner;
-
 public class Main {
+    public static Scanner in = new Scanner(System.in);
+    public static PrintStream out = System.out;
     public static void main(String[] args) {
-        // Создаем сканер для считывания входных данных
-        Scanner scanner = new Scanner(System.in);
-
         // Вводим данные
-        int a = scanner.nextInt();
-        int b = scanner.nextInt();
-        int c = scanner.nextInt();
-        int d = scanner.nextInt();
+        int a = in.nextInt();
+        int b = in.nextInt();
+        int c = in.nextInt();
+        int d = in.nextInt();
 
-        // Находим "третье" число без сортировки
-        int third = findThird(a, b, c, d);
-
-        System.out.println("Третье число: " + third);
-    }
-
-    // Функция для поиска "третьего" числа
-    static int findThird(int a, int b, int c, int d) {
-        // Используем комбинации сравнений для определения "третьего" числа
-        if ((a < b && a > c && a > d) || (a < c && a > b && a > d) || (a < d && a > b && a > c)) {
-            return a;
-        } else if ((b < a && b > c && b > d) || (b < c && b > a && b > d) || (b < d && b > a && b > c)) {
-            return b;
-        } else if ((c < a && c > b && c > d) || (c < b && c > a && c > d) || (c < d && c > a && c > b)) {
-            return c;
-        } else {
-            return d;
+        // Описываем поочерёдно все условия
+        if ( a==b || a==c || a==d || b==c || b==d || c==d) {
+            out.print("Нарушено условие, неверный ввод!");
+        }
+        else if ((a < b && a > c && a > d) || (a < c && a > b && a > d) || (a < d && a > b && a > c)) {
+            out.print(a);
+        }
+        else if ((b < a && b > c && b > d) || (b < c && b > a && b > d) || (b < d && b > a && b > c)) {
+            out.print(b);
+        }
+        else if ((c < a && c > b && c > d) || (c < b && c > a && c > d) || (c < d && c > a && c > b)) {
+            out.print(c);
+        }    
+        else if  ((d < a && d > b && d > c) || (d < b && d > a && d > c) || (d < c && d > a && d > b)) {
+            out.print(d);
         }
     }
 }
 
-
 ```
-
-if (a==b || a==c || a==d || b==c || b==d || c==d ){
-            System.out.println("Нарушено условие!");
-
-
-( a==b || a==c || a==d || b==c || b==d || c==d ){
-        } else if            
-
 
 ### 6. Анализ правильности решения
